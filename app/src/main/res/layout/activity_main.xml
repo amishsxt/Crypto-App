@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".View.MainActivity"
+    android:orientation="vertical"
+    android:background="@color/black_bg"
+    android:padding="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Crypto App"
+                android:textColor="@color/white"
+                android:fontFamily="@font/nunito_bold"
+                android:textSize="22sp"
+                android:layout_weight="1"/>
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/crypto_logo_2" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/search_bar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:startIconDrawable="@drawable/baseline_search_24"
+                app:startIconTint="@color/grey_text"
+                app:endIconCheckable="true"
+                app:endIconMode="clear_text"
+                app:boxCornerRadiusTopStart="45dp"
+                app:boxCornerRadiusTopEnd="45dp"
+                app:boxCornerRadiusBottomStart="45dp"
+                app:boxCornerRadiusBottomEnd="45dp"
+                app:boxBackgroundColor="@color/grey_search_bar"
+                android:textColorHint="@color/grey_text"
+                app:boxStrokeColor="@color/grey_search_bar"
+                app:hintTextColor="@color/grey_text">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/search_bar_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Search"
+                    android:inputType="text"
+                    android:fontFamily="@font/nunito_bold"
+                    android:textColor="@color/grey_text"
+                    android:maxLines="1"
+                    android:maxLength="20"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_gravity="center"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/error_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:visibility="gone"
+                android:text="No result found!"
+                android:fontFamily="@font/nunito_medium"
+                android:textColor="@color/grey_text"
+                android:layout_gravity="center"
+                android:textSize="16sp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>
