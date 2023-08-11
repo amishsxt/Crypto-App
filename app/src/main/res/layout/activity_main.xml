@@ -29,10 +29,11 @@
                 android:textSize="22sp"
                 android:layout_weight="1"/>
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_width="22dp"
                 android:layout_height="22dp"
-                android:src="@drawable/crypto_logo_2" />
+                android:src="@drawable/app_crypto_cirlce"
+                android:scaleType="centerCrop" />
 
         </LinearLayout>
 
