@@ -10,7 +10,7 @@ import com.example.cryptoapp.R;
 
 public class CurrencyViewHolder extends RecyclerView.ViewHolder {
 
-    TextView name,symbol,price;
+    TextView name,symbol,priceUsd,price;
 
     public CurrencyViewHolder(@NonNull View itemView) {
         super(itemView);

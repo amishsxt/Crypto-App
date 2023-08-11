@@ -1,15 +1,18 @@
-package com.example.cryptoapp.Model;
+package com.example.cryptoapp.Repository.DataModel;
+
+import java.text.DecimalFormat;
 
 public class CurrencyModel {
 
     private String name,symbol;
-    private double price;
-
+    private String price;
+    private static DecimalFormat decimalFormat = new DecimalFormat("#.##");
 
     public CurrencyModel(String name, String symbol, double price) {
         this.name = name;
         this.symbol = symbol;
-        this.price = price;
+        this.price = decimalFormat.format(price);
+
     }
 
     public String getName() {
@@ -28,11 +31,11 @@ public class CurrencyModel {
         this.symbol = symbol;
     }
 
-    public double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 }

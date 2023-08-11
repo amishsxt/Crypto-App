@@ -16,18 +16,14 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.cryptoapp.Model.CurrencyModel;
-import com.example.cryptoapp.Model.ResponseListener;
+import com.example.cryptoapp.Repository.DataModel.CurrencyModel;
 import com.example.cryptoapp.R;
-import com.example.cryptoapp.Repository.CurrencyRepo;
 import com.example.cryptoapp.ViewModel.CurrencyViewModel;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
-import java.util.Currency;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -55,53 +51,49 @@ public class MainActivity extends AppCompatActivity {
         progressBar.setVisibility(View.VISIBLE);
         recyclerView.setVisibility(View.INVISIBLE);
 
+        //observing data
         currencyViewModel = new ViewModelProvider(this).get(CurrencyViewModel.class);
-        currencyViewModel.getCurrentData(new ResponseListener<ArrayList<CurrencyModel>>() {
+        currencyViewModel.getLiveData().observe(this, new Observer<ArrayList<CurrencyModel>>() {
             @Override
-            public void onSuccess(ArrayList<CurrencyModel> data) {
-                currencyAdapterArrayList = data;
+            public void onChanged(ArrayList<CurrencyModel> currencyModels) {
+                currencyAdapterArrayList = currencyModels;
 
                 launchAdapter();
 
-                progressBar.setVisibility(View.INVISIBLE);
+                progressBar.setVisibility(View.GONE);
                 recyclerView.setVisibility(View.VISIBLE);
 
-                //Search logic
-                search.addTextChangedListener(new TextWatcher() {
-                    @Override
-                    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+        });
 
-                    }
-
-                    @Override
-                    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-                    }
-
-                    @Override
-                    public void afterTextChanged(Editable editable) {
-                        filterCurrencies(editable.toString());
-                    }
-                });
-
-                // To Close the keyboard
-                search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-                    @Override
-                    public boolean onEditorAction(TextView v, int i, KeyEvent keyEvent) {
-                        if(i == EditorInfo.IME_ACTION_NEXT){
-                            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-                            return true;
-                        }
-                        return false;
-                    }
-                });
+        //Search logic
+        search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
             }
 
             @Override
-            public void onFailure(String errorMessage) {
-                Toast.makeText(MainActivity.this, errorMessage , Toast.LENGTH_SHORT).show();
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                filterCurrencies(editable.toString());
+            }
+        });
+
+        // To Close the keyboard
+        search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int i, KeyEvent keyEvent) {
+                if(i == EditorInfo.IME_ACTION_NEXT){
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                    return true;
+                }
+                return false;
             }
         });
 
@@ -123,14 +115,14 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        if(filteredList.isEmpty()){
-            recyclerView.setVisibility(View.INVISIBLE);
+        if(filteredList.isEmpty() || filteredList.size() < 1){
+            recyclerView.setVisibility(View.GONE);
             noSearchFound.setVisibility(View.VISIBLE);
         }
         else{
             currencyAdapter.filterList(filteredList);
             recyclerView.setVisibility(View.VISIBLE);
-            noSearchFound.setVisibility(View.INVISIBLE);
+            noSearchFound.setVisibility(View.GONE);
         }
 
     }

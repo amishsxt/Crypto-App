@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cryptoapp.Model.CurrencyModel;
+import com.example.cryptoapp.Repository.DataModel.CurrencyModel;
 import com.example.cryptoapp.R;
 
 import java.text.DecimalFormat;
@@ -43,7 +43,7 @@ public class CurrencyAdapter extends RecyclerView.Adapter<CurrencyViewHolder> {
 
         holder.name.setText(items.get(position).getName());
         holder.symbol.setText(items.get(position).getSymbol());
-        holder.price.setText(decimalFormat.format(items.get(position).getPrice()).toString());
+        holder.price.setText(items.get(position).getPrice());
     }
 
     @Override
