@@ -16,9 +16,12 @@ A Lightweight Crypto Tracker App, your gateway to the world of cryptocurrencies!
 
 ## Screenshots
 
-<p align="center">
-  <img src="https://github.com/amishsxt/Crypto-Tracker-App/assets/93335461/6bccfd3f-5c1e-4f6d-9332-12781f3687d9" alt="Screen01" width="45%" style="margin-right: 10%;">
-  <img src="https://github.com/amishsxt/Crypto-Tracker-App/assets/93335461/c8363138-1da2-4e26-a46b-b066fd171d51" alt="Screen02" width="45%">
-</p>
+<table style="margin: 0 auto;">
+    <tr>
+        <td style="text-align: center;"><img src="https://github.com/amishsxt/Crypto-Tracker-App/assets/93335461/6bccfd3f-5c1e-4f6d-9332-12781f3687d9" alt="Screen01" width="45%" style="margin-right: 10%;"></td>
+        <td style="text-align: center;"><img src="https://github.com/amishsxt/Crypto-Tracker-App/assets/93335461/c8363138-1da2-4e26-a46b-b066fd171d51" alt="Screen02" width="45%"></td>
+    </tr>
+</table>
+
 
 
